@@ -1,0 +1,155 @@
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+% \VignetteIndexEntry{TurboNorm Overview}
+% \VignetteDepends{TurboNorm}
+% \VignetteKeywords{Expression Analysis, Preprocessing}
+% \VignettePackage{TurboNorm}
+
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,epsfig,fullpage,hyperref}
+\parindent 0in
+
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+
+\begin{document}
+
+\title{\bf TurboNorm: A fast scatterplot smoother with applications for microarray normalization}
+
+\author{Chantal van Leeuwen and Maarten van Iterson}
+
+\maketitle
+
+\begin{center} 
+Leiden University Medical Center, 
+Department of Human Genetics,\\
+The Netherlands\\ 
+Package TurboNorm, version 0.99.0\\
+\texttt{M.van\_Iterson.HG@LUMC.NL}
+\end{center}
+
+\tableofcontents
+
+\section{Introduction}
+
+This vignette show how piecewise constant P-splines \cite{Eilers1996} can be used for normalization of either single- or two-colour data. The \Rfunction{pspline()}-function can be used for two-colour data objects of type \Robject{RGList} and \Robject{MarrayRaw} from respectively from 
+\Rpackage{limma} \cite{Smyth2005} and from the package \Rpackage{marray}. For single colour microarray data wrapper functions are writting based on the \Rpackage{affy} \cite{Bolstad2003} functions \Rfunction{normalize.loess()} and \Rfunction{normalize.AffyBatch.loess()} namely \Rfunction{normalize.pspline()} and \Rfunction{normalize.AffyBatch.pspline()}. Also a \Rfunction{panel}-function, \Rfunction{panel.pspline()}, is available for adding the smoothed curve to \Rpackage{lattice} \cite{Sarkar2009} graphic panels.\\
+
+The P-spline smoother introduced by Eilers and Marx \cite{Eilers1996} is a combination of B-splines with a difference penalty on the regression coefficients. P-splines belong to the family of penalized splines using B-spline basis functions, where the penalization is on the curvature of the smoothed function. For the P-splines of Eilers and Marx \cite{Eilers1996}, a discrete approximation to the integrated squared second derivative of the B-splines is made. This results in an easy-to-construct penalty matrix, and the resulting band-diagonal system of equations can be efficiently solved. Using piecewise constant B-splines as a basis makes the construction of the B-spline basis even easier. The resulting linear system of equations can be solved either using a QR decomposition or a Cholesky decomposition \cite{Hastie2001}.\\
+
+Additionally to the P-spline smoother proposed by \cite{Eilers1996} we introduce a weighted P-spline smoother. The weighted P-spline smoother leads to the following system of equations: 
+\begin{equation}
+(X'WX + \lambda D'D)\boldsymbol{\hat{\beta}} = X'W\mathbf{y},
+\end{equation}
+where $X$ is the B-spline basis matrix (with $X'$ its transpose), $W$ is a diagonal matrix of weights, $D$ is a matrix operator for the second-order differences and $\mathbf{y}$ represents the vector of observations. The value of penalty parameter, $\lambda$, can be determined by cross-validation, for example. The original P-spline smoother of Eilers and Marx \cite{Eilers1996} has $W$, the identity matrix. When piecewise constant basis functions are used, both $X'WX$ and $X'W\mathbf{y}$ become diagonal matrices, and can be constructed very efficiently \cite{Eilers2004}. The regression coefficients of the weighted P-spline smoother are now given by:
+\begin{equation}
+\boldsymbol{\hat{\beta}} = (X'WX + \lambda D'D)^{-1} X'W\mathbf{y}.
+\end{equation}
+\\
+See for a detailed description of the method and several applications van Iterson \textit{et al.} \cite{vanIterson2010}.
+
+
+\section{Smoothing using piecewise constant P-splines}
+
+The main workhorse of the package is the function \Rfunction{turbotrend()}. Given data the function returns an object containing the smoothed values and some additional information like, effective degrees of freedom, optimized penalty value, $\lambda$, and the generalized cross-validation error at the optimal penalty value. 
+
+The following toy example shows the use of the \Rfunction{turbotrend()}. First we load the library and generate some data:
+
+<<code1>>=
+library(TurboNorm)
+funky <- function(x) sin(2*pi*x^3)^3
+m <- 100
+x <- seq(0, 1, length=m)
+y <- funky(x) + rnorm(m, 0, 0.1)
+@
+
+Next we plot the data and the underlying function that generated the data together with the smoothed curves based on the original piecewise constant B-spline basis.
+
+<<code2, fig=TRUE>>=
+plot(x, y, type='p', xlab="", ylab="")
+curve(funky, add=TRUE)
+
+fitOrig <- turbotrend(x, y, n=15, method="original")
+lines(fitOrig, col="green", type='b', pch=1)
+@
+
+In order to get some more detail on the regression parameters a \Rfunction{show}-method is implemented.
+
+<<code3>>=
+fitOrig
+@
+
+\section{Normalization of single- and two-colour data}
+
+For single colour microarray data normalization the following functions are available \Rfunction{normalize.pspline()} and \Rfunction{normalize.AffyBatch.pspline()} these functions are based on functions for normalization from the \Rpackage{affy} package.\\
+
+The \Rfunction{pspline()}-function can be used for normalization of two-colour microarray data. The data input is either an object of type \Robject{RGList} as defined in the package \Rpackage{limma} or an object of type \Robject{MarrayRaw} defined in the package \Rpackage{marray}. The \Rfunction{pspline()}-function recognizes the type of the object and returns the normalized object of the same type, i.e. \Robject{MAList} and \Robject{MarrayNorm}.\\
+ 
+Here is an example code using the \Robject{swirl}-data from \Rpackage{marray}. Using the option \Robject{showArrays=2} the smoothed curve is plotted together with the data in a MA plot for array 2 (by default no plot is shown).
+
+<<code4, fig=TRUE>>=
+library(marray)
+data(swirl)
+x <- pspline(swirl, showArrays=2, pch=20, col="grey")
+@
+
+
+\section{Normalization of array-based DNA methylation data}
+
+Here we show how a weighted normalization can be performed. This is especially useful for array-based DNA methylation data, where there is large number of differential methylation expected. 
+
+Using \Rfunction{data(methylation)} a random subset of the data of one of the cell lines described in the paper by van Iterson \textit{et al.} \cite{vanIterson2010} is loaded as an \Robject{RGList}. The element \Robject{weights} of the \Robject{RGList} contains the subset of invariant fragments, those without methylation-sensitive restriction sites, as a logical matrix where each colunm represents an array those fragments that are part of the subset are \Robject{TRUE} and those that are not \Robject{FALSE}. The data dependent weight is in this example approximately $250$. 
+
+<<code5>>=
+library(TurboNorm)
+data(methylation)
+
+indices <- methylation$weights[,1]
+weights <- rep(1, length(indices))
+weights[indices] <- length(indices)/sum(indices)
+
+MA <- normalizeWithinArrays(methylation, method="none", bc.method="none")
+
+labels <- paste("NMB", c("(untreated)", "(treated)"))
+labels <- paste(rep(c("Raw"), each=2), labels)
+
+@
+
+First we transform the intensities to M- and A-values without background correction and then the normalization is performed both weighted P-spline and ordinary lowess using \Rpackage{limma}. Now we use the \Rpackage{lattice} in order to illustrate the difference. We highlight the invariant subset in black.
+
+<<code6, fig=TRUE>>=
+
+data <- data.frame(M=as.vector(MA$M), 
+                   A=as.vector(MA$A), 
+                   Array=factor(rep(labels, each=nrow(MA$A)), levels=rev(labels)))
+
+library(lattice)
+
+print(xyplot(M~A|Array, xlab="", ylab="", data=data, type='g', 
+        panel = function(x, y) {
+                panel.xyplot(x, y, col="grey")
+								lpoints(x[indices], y[indices], pch=20, col="black")
+								panel.pspline(x, y, weights = weights, col="red", lwd=2)
+								panel.loess(x, y, col="green", lwd=2)								
+            }))
+@
+
+This example also shows how the \Rfunction{panel.pspline()}-function can be used. The smoothed curve obtained by the P-spline smoother can be added to \Rpackage{lattice} graphics.
+
+\section{Details}
+
+This document was written using:
+
+<<code7, echo=FALSE,results=tex>>=
+toLatex(sessionInfo())
+@
+
+
+\bibliographystyle{unsrt}
+\bibliography{turbonorm}
+
+\end{document}
+
