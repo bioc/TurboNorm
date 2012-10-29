@@ -6,18 +6,18 @@
 	**************************************************
 
 
-		CHANGES IN TURBONORM VERSION 0.99.0
+		CHANGES IN TURBONORM VERSION 1.7.1
 
 
 NEW FEATURES
 
-    o	
-
+    o faster turbotrend due to c implementation for the summation and couting by Paul Eilers
+    o add robustifying iterations using same approach as lowess code by Paul Eilers
    
 
 BUG FIXES
 
-		o 
+   o print array number when normalization of an array causes an error  
 	
 
    

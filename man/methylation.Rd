@@ -19,7 +19,7 @@
 }
 
 \references{
-van Iterson et al. (2010)
+van Iterson et al. A novel and fast normalization method for high-density arrays. SAGMB 11(4) 2012.
 \emph{in preparation}. 
 }
 

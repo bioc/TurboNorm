@@ -5,10 +5,8 @@
 \description{Modified version of normalize.loess and normalize.AffyBatch.pspline from the affy package uses the P-spline smoother in stead of the loess algorithm}
 
 \usage{
-normalize.pspline(mat, epsilon = 10^-2, maxit = 1, log.it = TRUE,
-    verbose = TRUE, weights = rep(1, nrow(mat)), ...)
-normalize.AffyBatch.pspline(abatch,
-    type=c("together","pmonly","mmonly","separate"), ...)
+normalize.pspline(mat, epsilon = 10^-2, maxit = 1, log.it = TRUE, verbose = TRUE, weights = rep(1, nrow(mat)), ...)
+normalize.AffyBatch.pspline(abatch, type=c("together","pmonly","mmonly","separate"), ...)
 }
 
 \arguments{

@@ -4,16 +4,14 @@
 
 \description{A fast scatterplot smoother based on B-splines with second order difference penalty}
 
-\usage{
-turbotrend(x, y, w = rep(1, length(y)), n = 100,
-           lambda=10^seq(-10, 10, length=1000),
-           method=c("original", "demmler"))}
+\usage{turbotrend(x, y, w = rep(1, length(y)), n = 100, lambda=10^seq(-10, 10, length=1000), iter=0, method=c("original", "demmler"))}
 
 \arguments{
   \item{x,y}{vectors giving the coordinates of the points in the scatter plot.}
   \item{w}{vector of weights of with same length as the data for a weighted smoothing. Default all weights are 1.}
   \item{n}{an integer indicating the number of intervals equal to 1 + number of knots. Currently the intervals must be langer than 10.}
   \item{lambda}{Optionally a user-defined penalty parameter can be provided, if not generalized cross-validation is used to find the optimal penalty parameter.}
+  \item{iter}{Number of robustifying iterations similar as lowess.}
 	\item{method}{method for solving the system of linear equations either using the data in the original space or transformed to the Demmler-Reinsch basis.}
 }
 
@@ -28,6 +26,7 @@ turbotrend(x, y, w = rep(1, length(y)), n = 100,
   \item{ytrend}{binnend fitted y-values}
   \item{xtrend}{binned x-values}
   \item{lambda}{if scalar penalty parameter used else if vector of two lower and upper bound of the grid}
+  \item{iter}{number of robustifying iterations}
   \item{gcv}{generalized cross-validation}
   \item{edf}{effective degrees of freedom (trace of the smoother matrix)}
   \item{call}{function call which produced this output}

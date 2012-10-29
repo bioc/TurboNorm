@@ -1,8 +1,8 @@
 Package: TurboNorm
 Type: Package
 Title: A fast scatterplot smoother suitable for microarray normalization
-Version: 1.7.0
-Date: 2010-13-09
+Version: 1.7.1
+Date: 2012-29-10
 Author: Maarten van Iterson and Chantal van Leeuwen
 Maintainer: Maarten van Iterson <M.van_iterson.HG@lumc.nl>
 Description: A fast scatterplot smoother based on B-splines with second-order difference penalty. Functions for microarray normalization of single-colour data i.e. Affymetrix/Illumina and two-colour data supplied as marray MarrayRaw-objects or limma RGList-objects are available.
@@ -13,4 +13,3 @@ Imports: stats, grDevices, affy, lattice
 Suggests: affydata, affy, lattice
 biocViews: Microarray, OneChannel, TwoChannel, Preprocessing, DNAMethylation, CpGIsland
 URL: http://www.humgen.nl/MicroarrayAnalysisGroup.html
-

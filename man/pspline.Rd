@@ -3,10 +3,7 @@
 \title{Function for two-colour microarray data normalization using the P-splines}
 \description{Wrapper function for two colour microarray data normalization using the P-spline smoother suitable for a RGList- or MarrayRaw-objects.}
 
-\usage{
-pspline(object, background = c("none", "substract"), weights = NULL,
-        nintervals = 100, subset=NULL, showArrays = 0, verbose=FALSE,
-        line.col=2,  line.lty=1, line.lwd=2, ...)}
+\usage{pspline(object, background = c("none", "substract"), weights = NULL, nintervals = 100, subset=NULL, showArrays = 0, verbose=FALSE, line.col=2,  line.lty=1, line.lwd=2, ...)}
 
 \arguments{
   \item{object}{either a RGList or an MarrayRaw-object.}

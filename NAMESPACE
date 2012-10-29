@@ -5,3 +5,5 @@ importFrom(lattice, panel.lines)
 
 export("pspline", "normalize.pspline", "normalize.AffyBatch.pspline", "turbotrend", "panel.pspline")
 S3method(print, turbotrend)
+
+useDynLib(TurboNorm)
