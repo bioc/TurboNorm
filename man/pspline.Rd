@@ -23,7 +23,11 @@
   The value that will be returned is either a MAList or MarrayNorm-object dependening on the input type.
 }
 
-\references{ 
+\references{
+  van Iterson M, Duijkers FA, Meijerink JP, Admiraal P, van Ommen GJ, Boer
+JM, van Noesel MM, Menezes RX (2012). A novel and fast normalization method for
+high-density arrays. SAGMB, 11(4).
+
 Paul .H.C. Eilers and Brain D. Marx (1996). Flexible smoothing with B-splines and Penalties. Statistical Science, Vol 11, No. 2, 89-121.
 }
 

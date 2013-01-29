@@ -19,8 +19,7 @@
 }
 
 \references{
-van Iterson et al. A novel and fast normalization method for high-density arrays. SAGMB 11(4) 2012.
-\emph{in preparation}. 
+  van Iterson M, Duijkers FA, Meijerink JP, Admiraal P, van Ommen GJ, Boer JM, van Noesel MM, Menezes RX (2012). A novel and fast normalization method for high-density arrays. SAGMB, 11(4). 
 }
 
 \examples{

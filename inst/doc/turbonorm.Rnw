@@ -27,8 +27,8 @@
 Leiden University Medical Center, 
 Department of Human Genetics,\\
 The Netherlands\\ 
-Package TurboNorm, version 0.99.0\\
-\texttt{M.van\_Iterson.HG@LUMC.NL}
+Package TurboNorm, version 1.7.2\\
+\texttt{mviterson@gmail.com}
 \end{center}
 
 \tableofcontents
@@ -49,7 +49,7 @@ where $X$ is the B-spline basis matrix (with $X'$ its transpose), $W$ is a diago
 \boldsymbol{\hat{\beta}} = (X'WX + \lambda D'D)^{-1} X'W\mathbf{y}.
 \end{equation}
 \\
-See for a detailed description of the method and several applications van Iterson \textit{et al.} \cite{vanIterson2010}.
+See for a detailed description of the method and several applications van Iterson \textit{et al.} \cite{vanIterson2012}.
 
 
 \section{Smoothing using piecewise constant P-splines}

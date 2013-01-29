@@ -1,3 +1,4 @@
+
 ################################################################################
 ##taken from the affy package: cyclic loess normalization function
 ##replaced the loess with P-spline smoother
@@ -29,9 +30,10 @@ normalize.pspline <- function(mat, epsilon=10^-2, maxit=1, log.it=TRUE, verbose=
         ##put endpoints in so we can interpolate
         xx <- x
         yy <- y
-        #aux <- loess(yy~xx,span=span,degree=1,weights=w,family=family.loess)
-        #aux <- predict(aux,data.frame(xx=x))/J
-				aux <- turbotrend(xx, yy, w=weights, n=100)$y/J
+        ##aux <- loess(yy~xx,span=span,degree=1,weights=w,family=family.loess)
+        ##aux <- predict(aux,data.frame(xx=x))/J
+        aux <- turbotrend(xx, yy, w=weights, n=100)$y/J
+
         means[,j] <- means[,j] + aux
         means[,k] <- means[,k] - aux
         if(verbose) cat("Done with",j,"vs",k," in iteration ",iter,"\n")
@@ -39,8 +41,8 @@ normalize.pspline <- function(mat, epsilon=10^-2, maxit=1, log.it=TRUE, verbose=
     }
     fs <- fs+means
     newData <- mat-fs
-	change <- max(colMeans((means)^2))
-	if(verbose) cat(iter,change,"\n")
+    change <- max(colMeans((means)^2))
+    if(verbose) cat(iter,change,"\n")
     oldfs <- fs
   }
   if(change>epsilon & maxit>1) warning(paste("No convergence after",maxit,"iterations.\n"))

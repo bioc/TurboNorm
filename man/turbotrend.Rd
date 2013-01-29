@@ -12,17 +12,17 @@
   \item{n}{an integer indicating the number of intervals equal to 1 + number of knots. Currently the intervals must be langer than 10.}
   \item{lambda}{Optionally a user-defined penalty parameter can be provided, if not generalized cross-validation is used to find the optimal penalty parameter.}
   \item{iter}{Number of robustifying iterations similar as lowess.}
-	\item{method}{method for solving the system of linear equations either using the data in the original space or transformed to the Demmler-Reinsch basis.}
+  \item{method}{method for solving the system of linear equations either using the data in the original space or transformed to the Demmler-Reinsch basis.}
 }
 
 \details{some details about implementation}
 
 \value{
-	An object of type \code{pspline} is returned as a list with the following items:
+  An object of type \code{pspline} is returned as a list with the following items:
   \item{x}{original data vector x}
   \item{y}{fitted y-values with same length as vector x}
   \item{w}{vector of weights}
-  \item{n}{number of bins}	
+  \item{n}{number of bins}
   \item{ytrend}{binnend fitted y-values}
   \item{xtrend}{binned x-values}
   \item{lambda}{if scalar penalty parameter used else if vector of two lower and upper bound of the grid}
@@ -32,7 +32,12 @@
   \item{call}{function call which produced this output}
 }
 
-\references{Paul .H.C. Eilers and Brain D. Marx (1996). Flexible smoothing with B-splines and Penalties. Statistical Science, Vol 11, No. 2, 89-121.
+\references{
+  van Iterson M, Duijkers FA, Meijerink JP, Admiraal P, van Ommen GJ, Boer
+  JM, van Noesel MM, Menezes RX (2012). A novel and fast normalization method for
+  high-density arrays. SAGMB, 11(4).
+
+  Paul .H.C. Eilers and Brain D. Marx (1996). Flexible smoothing with B-splines and Penalties. Statistical Science, Vol 11, No. 2, 89-121.
 }
 
 \author{Maarten van Iterson, Chantal van Leeuwen}
@@ -46,7 +51,7 @@ library(marray)
 data(swirl)
 
 x <- maA(swirl)[,1]
-y <- maM(swirl)[,1] 
+y <- maM(swirl)[,1]
 xord <- x[order(x)]
 yord <- y[order(x)]
 
@@ -60,4 +65,3 @@ legend("topleft", c("piecewise constant P-splines", "Cubic B-splines", "lowess")
 
 \keyword{smooth}
 \keyword{regression}
-

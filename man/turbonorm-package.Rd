@@ -10,20 +10,24 @@
 \tabular{ll}{
 Package: \tab TurboNorm\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2010-09-15\cr
+Version: \tab 1.7.2\cr
+Date: \tab 2013-29-01\cr
 License: \tab LGPL\cr
 LazyLoad: \tab yes\cr
 }
 
-This package contains a implementation of piecewise constant P-splines of Eilers and Marx (1996) that can be used for normalization of either single- or two-colour data. For two-colour data objects of type \code{RGList} from the \code{limma} package and \code{MarrayRaw} from the package \code{marray} can be normalized using the function \code{pspline()}. For single colour microarray data wrapper functions are written based on the \code{affy} package functions \code{normalize.loess()} and \code{normalize.AffyBatch.loess()} namely \code{normalize.pspline()} and \code{normalize.AffyBatch.pspline()}. Also a \code{panel.pspline()} is available for adding the smoothed curve to \code{lattice} graphics panels.
+This package contains an implementation of piecewise constant P-splines of Eilers and Marx (1996) that can be used for normalization of either single- or two-colour data. For two-colour data objects of type \code{RGList} from the \code{limma} package and \code{MarrayRaw} from the package \code{marray} can be normalized using the function \code{pspline()}. For single colour microarray data wrapper functions are written based on the \code{affy} package functions \code{normalize.loess()} and \code{normalize.AffyBatch.loess()} namely \code{normalize.pspline()} and \code{normalize.AffyBatch.pspline()}. Also a \code{panel.pspline()} is available for adding the smoothed curve to \code{lattice} graphics panels.
 
 }
 \author{ 
 Chantal van Leeuwen and Maarten van Iterson 
-Maintainer: Maarten van Iterson<M.van_Iterson.HG@lumc.nl>}
+Maintainer: Maarten van Iterson<mviterson@gmail.com>}
 
 \references{
+van Iterson M, Duijkers FA, Meijerink JP, Admiraal P, van Ommen GJ, Boer
+JM, van Noesel MM, Menezes RX (2012). A novel and fast normalization method for
+high-density arrays. SAGMB, 11(4).
+
 Paul .H.C. Eilers and Brain D. Marx (1996). Flexible smoothing with B-splines and Penalties. Statistical Science, Vol 11, No. 2, 89-121.
 }
 

@@ -5,6 +5,13 @@
 	*						 *
 	**************************************************
 
+		CHANGES IN TURBONORM VERSION 1.7.2
+
+
+BUG FIXES
+
+   o normalize.AffyBatch.pspline now correcly handles the weights  
+
 
 		CHANGES IN TURBONORM VERSION 1.7.1
 
