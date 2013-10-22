@@ -2,6 +2,7 @@ importFrom(stats, optimize)
 importFrom(grDevices, n2mfrow)
 importFrom(affy, indexProbes, intensity)
 importFrom(lattice, panel.lines)
+importFrom(lattice, trellis.par.get)
 
 export("pspline", "normalize.pspline", "normalize.AffyBatch.pspline", "turbotrend", "panel.pspline")
 S3method(print, turbotrend)
