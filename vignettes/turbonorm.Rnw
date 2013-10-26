@@ -139,7 +139,6 @@ This document was written using:
 toLatex(sessionInfo())
 @
 
-\bibliographystyle{unsrt}
 \bibliography{turbonorm}
 
 \end{document}

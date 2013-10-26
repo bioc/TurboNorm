@@ -1,7 +1,7 @@
 Package: TurboNorm
 Type: Package
 Title: A fast scatterplot smoother suitable for microarray normalization
-Version: 1.11.3
+Version: 1.11.4
 Date: 2013-22-10
 Author: Maarten van Iterson and Chantal van Leeuwen
 Maintainer: Maarten van Iterson <mviterson@gmail.com>
