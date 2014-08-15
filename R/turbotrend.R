@@ -14,7 +14,12 @@ binsum <- function(x, y = 0 * x + 1, n = max(as.integer(x)))
     b <- rep(0.0, n + 1)
     m <- as.integer(length(x))
     ## Call C function
-    som <- .C("binsum", a, y, b, m, CLASSES = c("integer", "numeric", "numeric", "integer"))[[3]]
+    som <- .C("binsum",
+              a = as.vector(a, mode="integer"),
+              y = as.vector(y, mode="double"),
+              b = as.vector(b, mode="double"),
+              m = as.integer(m),
+              PACKAGE="TurboNorm")[[3]]
     return(som[-1])
   }
 

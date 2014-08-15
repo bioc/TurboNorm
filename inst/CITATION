@@ -1,8 +1,12 @@
-citHeader("To cite package 'TurboNorm' in publications use:")
+citEntry(entry="Article",
+   author="van Iterson, M.  and Duijkers, F. A.  and Meijerink, J. P.  and Admiraal, P.  and van Ommen, G. J.  and Boer, J. M.  and van Noesel, M. M.  and Menezes, R. X. ",
+   title="{{A} novel and fast normalization method for high-density arrays}",
+   journal="Stat Appl Genet Mol Biol",
+   year="2012",
+   volume="11",
+   number="4",
+ textVersion = paste("van Iterson, M.  and Duijkers, F. A.  and Meijerink, J. P.  and Admiraal, P.  and van Ommen, G. J.  and Boer, J. M.  and van Noesel, M. M.  and Menezes, R. X.",
+"A novel and fast normalization method for high-density arrays",
+"Stat Appl Genet Mol Biol", "2012(11),4.")
+)
 
-citEntry(entry="manual",
-         title = "TurboNorm: A fast scatterplot smoother with applications for microarray normalization",
-         author = personList(as.person("Chantal van Leeuwen"), as.person("Maarten van Iterson")),
-         textVersion = paste("van Iterson M, Duijkers FA, Meijerink JP, Admiraal P, van Ommen GJ, Boer JM, van Noesel MM, Menezes RX. A novel and fast normalization method for high-density arrays. SAGMB, 11(4), 2012 ", sep=""))   
-
-citFooter("This free open-source software implements academic research by the authors and co-workers. If you use it,please support the project by citing the appropriate journal articles.")
